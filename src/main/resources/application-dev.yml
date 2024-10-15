@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+    url: jdbc:postgresql://${POSTGRES_DEV_HOST}:${POSTGRES_DEV_PORT}/${SCHOOL_SERVICE_DEV_DB}
+    username: ${POSTGRES_DEV_USER}
+    password: ${POSTGRES_DEV_PASSWORD}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_DEV_HOST}:${EUREKA_DEV_PORT}/eureka/
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    display-operation-id: false
+    operations-sorter: method
+    display-request-duration: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        sql: debug
+        type: trace
+  root: DEBUG

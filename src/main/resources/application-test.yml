@@ -1,0 +1,27 @@
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:h2:mem:testdb # 'testdb' is the name of the in-memory database
+    driver-class-name: org.h2.Driver
+    username: sa # Default username for H2
+    password: # No password required by default
+  h2:
+    console:
+      enabled: true # Enable H2 console for web access
+      path: /h2-console # Path to access H2 console (default is /h2-console)
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect # Use H2 dialect
+    hibernate:
+      ddl-auto: create-drop # Automatically create/update tables. You can also use 'create', 'create-drop', or 'validate' for different scenarios.
+    show-sql: true # Show SQL statements in the console for debugging
+  sql:
+    init:
+      platform: h2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka/
+
+logging:
+  level:
+    root: DEBUG
