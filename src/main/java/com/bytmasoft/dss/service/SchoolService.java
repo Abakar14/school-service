@@ -68,8 +68,7 @@ public class SchoolService {
         School school = findSchoolById(id);
         school.setIsActive(true);
         school.setModifiedBy(appUtils.getUsername());
-        schoolRepository.save(school);
-        return schoolMapper.toSchoolResponseDTO(school);
+        return schoolMapper.toSchoolResponseDTO( schoolRepository.save(school));
     }
 
     public School findSchoolById(Long id) throws DSSEntityNotFoundException{
@@ -81,15 +80,14 @@ public class SchoolService {
         School school = findSchoolById(id);
         school.setIsActive(false);
         school.setModifiedBy(appUtils.getUsername());
-        schoolRepository.save(school);
-        return schoolMapper.toSchoolResponseDTO(school);
+        return schoolMapper.toSchoolResponseDTO(schoolRepository.save(school));
     }
 
     public SchoolResponseDTO markfordeletion(Long id) {
         School school = findSchoolById(id);
+        school.setDeleted(true);
         school.setModifiedBy(appUtils.getUsername());
-        schoolRepository.save(school);
-        return schoolMapper.toSchoolResponseDTO(school);
+       return schoolMapper.toSchoolResponseDTO(schoolRepository.save(school));
     }
 
     public Long countAll() {
