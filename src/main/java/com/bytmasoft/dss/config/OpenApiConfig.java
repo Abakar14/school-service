@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
                 ),
                 termsOfService = "Term of Service"
 
-        )
+        ),
         //,
         /* servers = {
 
@@ -41,13 +41,13 @@ import org.springframework.context.annotation.Configuration;
                          url = "http://www.prod:8081"
                  )
          },*/
-   /*     security = {
+       security = {
                 @SecurityRequirement(
                         name = "BearerAuth"
                 )
-        }*/
+        }
 )
-/*@SecuritySchemes(
+@SecuritySchemes(
         value = {
                 @SecurityScheme(
                         name = "BearerAuth",
@@ -58,8 +58,7 @@ import org.springframework.context.annotation.Configuration;
                         in = SecuritySchemeIn.HEADER
                 )
         }
-)*/
-
+)
 @Configuration
 public class OpenApiConfig {
 }
