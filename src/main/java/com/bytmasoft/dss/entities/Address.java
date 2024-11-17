@@ -23,7 +23,7 @@ public class Address extends BaseEntity implements Serializable {
     private String country;
      private String street;
     private String streetNumber;
-    private String zipCode;
+    private String postalCode;
     @Builder.Default
     @Column(columnDefinition = "Boolean default false")
     private boolean deleted = false;

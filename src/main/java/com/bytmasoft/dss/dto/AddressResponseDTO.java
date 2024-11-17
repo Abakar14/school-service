@@ -29,6 +29,6 @@ public class AddressResponseDTO {
     private String country;
     private String street;
     private String streetNumber;
-    private String zipCode;
+    private String postalCode;
 
 }
