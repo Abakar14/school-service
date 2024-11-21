@@ -25,3 +25,6 @@ logging:
         sql: debug
         type: trace
   root: DEBUG
+
+app:
+  initialize: true

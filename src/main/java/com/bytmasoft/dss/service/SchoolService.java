@@ -2,6 +2,7 @@ package com.bytmasoft.dss.service;
 
 import com.bytmasoft.common.exception.DSSBadRequestExpception;
 import com.bytmasoft.common.exception.DSSEntityNotFoundException;
+import com.bytmasoft.dss.dto.AddressCreateDTO;
 import com.bytmasoft.dss.dto.SchoolCreateDTO;
 import com.bytmasoft.dss.dto.SchoolResponseDTO;
 import com.bytmasoft.dss.dto.SchoolUpdateDTO;
@@ -9,6 +10,7 @@ import com.bytmasoft.dss.entities.Address;
 import com.bytmasoft.dss.entities.Classe;
 import com.bytmasoft.dss.entities.Employee;
 import com.bytmasoft.dss.entities.School;
+import com.bytmasoft.dss.mapper.AddressMapper;
 import com.bytmasoft.dss.mapper.SchoolMapper;
 import com.bytmasoft.dss.repositories.*;
 import com.bytmasoft.dss.utils.AppUtils;
@@ -36,21 +38,29 @@ public class SchoolService {
     private final EmployeeRepository employeeRepository;
     private final ClasseRepository classeRepository;
     private final PagedResourcesAssembler<SchoolResponseDTO> pagedResourcesAssembler;
+private final AddressMapper addressMapper;
 
-    public SchoolResponseDTO add(@Valid SchoolCreateDTO schoolCreateDTO) {
+public SchoolResponseDTO add(@Valid SchoolCreateDTO schoolCreateDTO) {
 
         Address address = null;
-        if(schoolCreateDTO.getAddressId() == null) {
+        if(schoolCreateDTO.getAddressCreateDTO() == null) {
             throw new DSSBadRequestExpception("Add school without address is not allowed");
         }
-        if(schoolCreateDTO.getAddressId() != null) {
-            address = addressRepository.findById(schoolCreateDTO.getAddressId()).orElseThrow(() -> new DSSEntityNotFoundException("Address with id: "+schoolCreateDTO.getAddressId()+" not found"));
-        }
+
+        address = addressMapper.toAddress(schoolCreateDTO.getAddressCreateDTO());
+    System.out.println("address : " + address.toString());
+        address.setAddedBy(appUtils.getUsername());
+
+        //Address savedAddress = addressRepository.save(address);
+
+
         School school = schoolMapper.toSchool(schoolCreateDTO);
+    System.out.println("school : " + school.toString());
         school.setAddress(address);
         school.setAddedBy(appUtils.getUsername());
-        School savedClasse = schoolRepository.save(school);
-        return schoolMapper.toSchoolResponseDTO(savedClasse);
+
+        School savedSchool = schoolRepository.save(school);
+        return schoolMapper.toSchoolResponseDTO(savedSchool);
     }
 
     public PagedModel<EntityModel<SchoolResponseDTO>> getAllSchools(Pageable pageable) {

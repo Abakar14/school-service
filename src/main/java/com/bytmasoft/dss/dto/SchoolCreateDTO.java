@@ -19,7 +19,7 @@ public class SchoolCreateDTO {
     private String email;
     private String phone;
     private String website;
-    private Long addressId;
+    private AddressCreateDTO addressCreateDTO;
     private List<Long> courseIds;
     private List<Long> employeeIds;
     private List<Long> classeIds;
