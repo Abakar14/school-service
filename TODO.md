@@ -19,7 +19,6 @@
 
 ### In Progress
 - [ ] by save new school object with courseIds i muss call teacher-service to check the existence of courses!!!
-- [ ] prepare swagger
 - [ ] We need Endpoint for none active  School active = false
 - [ ] We need Endpoint for active School
 - [ ] By delete one School we need to put deleted=true and active = true
@@ -31,6 +30,7 @@
 - 
 
 ### Done ✓
+- [x] prepare swagger
 - [x] add endpoint add course to school
 - [x] add endpoint add Employee to school
 - [x] add endpoint add classe to school

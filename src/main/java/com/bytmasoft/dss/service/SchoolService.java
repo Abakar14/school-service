@@ -46,16 +46,13 @@ public SchoolResponseDTO add(@Valid SchoolCreateDTO schoolCreateDTO) {
         if(schoolCreateDTO.getAddressCreateDTO() == null) {
             throw new DSSBadRequestExpception("Add school without address is not allowed");
         }
-
         address = addressMapper.toAddress(schoolCreateDTO.getAddressCreateDTO());
-    System.out.println("address : " + address.toString());
         address.setAddedBy(appUtils.getUsername());
 
         //Address savedAddress = addressRepository.save(address);
 
 
         School school = schoolMapper.toSchool(schoolCreateDTO);
-    System.out.println("school : " + school.toString());
         school.setAddress(address);
         school.setAddedBy(appUtils.getUsername());
 

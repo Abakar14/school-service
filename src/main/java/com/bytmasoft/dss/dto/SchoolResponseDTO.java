@@ -20,14 +20,12 @@ public class SchoolResponseDTO {
     private String email;
     private String phone;
     private String website;
-    private Long addressId;
     private boolean deleted;
     private Boolean isActive;
     private LocalDateTime addedOn;
     private LocalDateTime modifiedOn;
     private String addedBy;
     private String modifiedBy;
-
     private AddressResponseDTO address;
     private List<ClasseResponseDTO> classes;
     private List<EmployeeResponseDTO> employees;

@@ -23,8 +23,6 @@ public class AddressResponseDTO {
     private LocalDateTime modifiedOn;
     private String addedBy;
     private String modifiedBy;
-
-
     private String city;
     private String country;
     private String street;
